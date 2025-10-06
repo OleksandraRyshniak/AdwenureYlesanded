@@ -24,3 +24,35 @@ from dbo.DimEmployee
 return 
 end
 select * from  fn_MSTVF_GetEmployees();
+
+--Skaleeritav funktsioon ilma krüpteerimata
+create Function fn_GetEmployeeNameById(@EmployeeKey int)
+returns nvarchar(20)
+as
+begin
+return (Select FirstName from DimEmployee where EmployeeKey=@EmployeeKey)
+end
+
+select dbo.fn_GetEmployeeNameById(3)
+
+--Nüüd muudame funktsiooni ja krüpteerime selle ära
+alter Function fn_GetEmployeeNameById(@EmployeeKey int)
+returns nvarchar(20)
+With Encryption
+as
+begin
+return (Select FirstName from DimEmployee where EmployeeKey=@EmployeeKey)
+end
+
+select dbo.fn_GetEmployeeNameById(3)
+
+--Nüüd ei ole võimalik tabelit kustutada ega muuta.
+alter Function fn_GetEmployeeNameById(@EmployeeKey int)
+returns nvarchar(20)
+With SchemaBinding
+as
+begin
+return (Select FirstName from dbo.DimEmployee where EmployeeKey=@EmployeeKey)
+end
+
+drop table dbo.DimEmployee
