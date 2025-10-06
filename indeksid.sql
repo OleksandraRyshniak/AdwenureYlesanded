@@ -34,7 +34,7 @@ create clustered Index IX_tblEmployee_Name
 on tblEmployee(Name)
 
 --indeksi kustutamine
-Drop index tblEmployee.PK_tblEmplo_3214EC070A9D95DB
+Drop index tblEmployee.IX_tblEmployee_Name
 
 --indeksi loomine veergudele gender ja salary
 Create Clustered Index IX_tblEmployee_Gender_Salary
@@ -46,3 +46,32 @@ on tblEmployee(Name)
 
 --clustered index -- PK (ainult üks)
 --nonclustered index -- hulk
+
+--37
+--indeksi loomine veeru Id jaoks
+create clustered Index IX_tblEmployee_Id
+on tblEmployee(Id)
+
+--esmase võtme kontroll
+execute sp_helpindex tblEmployee;
+
+--veeru Id indeksi kustutamine
+drop index tblEmployee.IX_tblEmployee_Id
+
+--unikaalne indeks, mis tagab, et veerus Name 
+--ei esineks korduvaid andmeid
+create unique NonClustered Index UIX_tblEmployee_Name
+on tblEmployee(Name)
+
+--unikaalse piirangu lisamine veerule City
+alter table tblEmployee
+add constraint UQ_tblEmployee_City
+Unique NonClustered (City)
+
+--indeksi kontroll
+execute sp_helpconstraint tblEmployee;
+
+--indeks, mis ei luba veerus korduvaid andmeid
+Create unique Index IX_tblEmployee_City
+On tblEmployee(City)
+with ignore_dup_key
