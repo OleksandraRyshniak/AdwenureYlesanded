@@ -1,0 +1,18 @@
+git config --global user.name "Oleksandra Ryshniak"
+git config --global user.email "oleksandraryshniak@gmail.com"
+git config --global --list
+git init
+
+git clone git@github.com:OleksandraRyshniak/AdwenureYlesanded.git
+
+----
+muudaste kinnitamine
+git add .
+git commit -a -m "tegevus mis on tehtud"
+
+git push
+git status
+
+ssh võti loomiseks: id_rsa.pub on vaja lisada github'i nagu deploy key
+
+ssh-keygen -o -t rsa -C "oleksandraryshniak@gmail.com"
