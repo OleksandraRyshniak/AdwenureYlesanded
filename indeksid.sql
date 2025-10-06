@@ -75,3 +75,28 @@ execute sp_helpconstraint tblEmployee;
 Create unique Index IX_tblEmployee_City
 On tblEmployee(City)
 with ignore_dup_key
+
+--38
+--mitte-klastreeritud indeks Salary veerule
+create NonClustered Index IX_tblEmployee_Salary
+on tblEmployee (Salary Asc)
+
+--SELECT päring saab kasu Salary veeru indeksist 
+select * from tblEmployee where Salary > 4000 and Salary < 8000
+
+--DELETE-operatsiooni indeks
+delete from tblEmployee where Salary=2500
+
+--UPDATE-operatsiooni indeks
+update tblEmployee set Salary = 9000 where Salary = 7000
+
+--palga sortimine kasvavas järjekorras
+select * from tblEmployee order by Salary
+
+--palga sortimine kahanevas järjekorras
+select * from tblEmployee order by Salary desc
+
+--GROUP BY Salary indeksi abil
+select Salary, COUNT(Salary) as Total
+from tblEmployee
+group by Salary
