@@ -18,3 +18,11 @@ Indeksid tblEmployee
 
 <img width="392" height="219" alt="{B74B605F-FB48-4632-9F12-C89B40BE02EE}" src="https://github.com/user-attachments/assets/e7c0d05b-3eb3-4537-9805-7e01063f6e4e" />
 
+View
+
+<img width="326" height="272" alt="{F8B899C7-57E7-4AFF-887A-E2195E8DDFBE}" src="https://github.com/user-attachments/assets/7be1be52-c9ff-4167-9fe7-d306c78c02c9" />
+
+
+Trigger
+
+<img width="344" height="316" alt="{B276FC45-4024-409A-8796-F1792BBE7524}" src="https://github.com/user-attachments/assets/ed3428c4-4477-4250-aa88-fdcc209b8da5" />
