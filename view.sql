@@ -68,3 +68,29 @@ on tblEmployee.DepartmentId=tblDepartment.deptId
 group by DeptName
 
 select * from vWEmployeesCountByDepartment
+
+--40
+--tagastab kõik veerud, välja arvatud palk
+create view vWEmployeesDataExceptSalary
+as
+Select Id, Name, Gender, DepartmentId
+from tblEmployee
+select * from vWEmployeesDataExceptSalary
+update vWEmployeesDataExceptSalary 
+set Name = 'Mikey' Where Id=1
+delete from vWEmployeesDataExceptSalary where Id=2
+Insert into vWEmployeesDataExceptSalary values (2, 'Mikey','Male', 2)
+
+--täieliku tblEmployee tabeli kuvamine sekundaarvõtmega
+create view vwEmployeeDetailsByDepartment
+as
+select Id, Name, Salary, Gender, DeptName
+from tblEmployee
+join tblDepartment
+on tblEmployee.DepartmentId=tblDepartment.deptId
+
+select * from vwEmployeeDetailsByDepartment
+
+--muutmine
+update vwEmployeeDetailsByDepartment
+set DeptName='IT' where Name ='John'
