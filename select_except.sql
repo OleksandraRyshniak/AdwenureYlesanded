@@ -29,3 +29,32 @@ Select Id, Name, Gender, Salary
 from tblEmployee
 where Salary >=6000
 order By Name
+
+--88
+--tagastab read vasakust päringust, mis ei ole paremas tabelis
+select Id, Name, Gender from tblEmployee
+except
+select Id, Name, Gender from tblEmployee1
+
+--Sama tulemuse võib saavutada NOT IN operaatoriga
+select Id, Name, Gender from tblEmployee
+where Id Not In (select Id from tblEmployee1)
+
+insert into tblEmployee1 values(11, 'Mark', 6500, 'Female', 'Sydney')
+
+
+select Id, Name, Gender from tblEmployee1
+except 
+select Id, Name, Gender from tblEmployee
+
+select Id, Name, Gender from tblEmployee1
+where Id Not In (select Id from tblEmployee)
+
+
+select Id, Name, Gender from tblEmployee
+except 
+select Id, Name, Gender from tblEmployee1
+
+select Id, Name, Gender from tblEmployee
+where Id Not In (select Id from tblEmployee1)
+
