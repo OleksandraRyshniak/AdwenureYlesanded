@@ -1,4 +1,4 @@
-select * from tblEmployee
+﻿select * from tblEmployee
 
 create table tblEmployee1(
  Id int Primary Key,
@@ -20,7 +20,7 @@ Except
 select Id, Name, Gender
 from tblEmployee1
 
---t��tajate sorteerimine palga j�rgi
+--töötajate sorteerimine palga järgi
 select Id, Name, Gender, Salary
 from tblEmployee
 Where Salary >=5000
@@ -31,12 +31,12 @@ where Salary >=6000
 order By Name
 
 --88
---tagastab read vasakust p�ringust, mis ei ole paremas tabelis
+--tagastab read vasakust päringust, mis ei ole paremas tabelis
 select Id, Name, Gender from tblEmployee
 except
 select Id, Name, Gender from tblEmployee1
 
---Sama tulemuse v�ib saavutada NOT IN operaatoriga
+--Sama tulemuse võib saavutada NOT IN operaatoriga
 select Id, Name, Gender from tblEmployee
 where Id Not In (select Id from tblEmployee1)
 
@@ -58,3 +58,44 @@ select Id, Name, Gender from tblEmployee1
 select Id, Name, Gender from tblEmployee
 where Id Not In (select Id from tblEmployee1)
 
+--98
+
+--еabeli loomine
+create table Sales (
+  Product nvarchar(50),
+  SaleAmount int)
+
+insert into Sales values ('Iphone', 500)
+insert into Sales values ('Laptop', 800)
+insert into Sales values ('Iphone', 1000)
+insert into Sales values ('Speakers', 400)
+insert into Sales values ('Laptop', 600)
+
+--müügimaht kokku kahanevas järjekorras
+select Product, Sum(SaleAmount) as TotalSales
+from Sales
+Group by Product
+
+--kus müük kokku on suurem kui 1000€
+select Product, Sum(SaleAmount) as TotalSales
+from Sales
+Group by Product
+Having Sum(SaleAmount) > 1000
+
+--süntaksivea
+select Product, SUM (SaleAmount) as TotalSales
+from Sales
+Group by Product
+WHERE Sum(SaleAmount) > 1000
+
+--mis näitavad summat ning eemaldavad kõik tooted peale iPhone-i ja Speakerite
+select Product, SUM (SaleAmount) as TotalSales
+from Sales
+where Product in ('Iphone', 'Speakers')
+Group by Product
+
+--süntaksivea
+select Product, SUM (SaleAmount) as TotalSales
+from Sales
+Group by Product
+where Product in ('Iphone', 'Speakers')
