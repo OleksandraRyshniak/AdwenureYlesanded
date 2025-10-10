@@ -26,3 +26,6 @@ View
 Trigger
 
 <img width="344" height="316" alt="{B276FC45-4024-409A-8796-F1792BBE7524}" src="https://github.com/user-attachments/assets/ed3428c4-4477-4250-aa88-fdcc209b8da5" />
+
+<img width="263" height="297" alt="{CADEC36D-856C-4615-8910-C7F96442C32A}" src="https://github.com/user-attachments/assets/b894e668-a167-4467-b967-a686d9b6312f" />
+
